@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
+require 'net/smtp'
 
 # step 1: get the price.
 # url is the page which contains the price information of the ticket you need.
@@ -11,8 +12,23 @@ t1 = doc.css(".choose_price").first
 price = t1.css(".dollar").text[/[0-9\.]+/]
 puts price
 
-my_price = 900
 
 #step 2: if it reach the upper bound set before send an email.
-puts my_price < price.to_i
+my_price = 900
+
+message = <<EOF
+From: SENDER <huangkandiy@gmail.com>
+To: RECEIVER <huangkandiy@gmail.com>
+Subject: purchase tickets now!
+FYI
+EOF
+if my_price > price.to_i
+	#Using Block
+	smtp = Net::SMTP.new('smtp.gmail.com', 587 )
+	smtp.enable_starttls
+	smtp.start('gmail.com', 'huangkandiy@gmail.com', 'PASSWORD', :login) do |smtp|
+		smtp.send_message message, 'huangkandiy@gmail.com', 'huangkandiy@gmail.com'
+	end
+end
+
 
