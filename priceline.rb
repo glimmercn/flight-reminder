@@ -3,6 +3,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'net/smtp'
 
+
 message = <<EOF
 From: SENDER <huangkandiy@gmail.com>
 To: RECEIVER <huangkandiy@gmail.com>
@@ -38,4 +39,6 @@ while true do
 	sleep(k)
 end
 
+# references: http://dipinkrishna.com/blog/2012/09/ruby-sending-mails-gmail-smtp-authentication/
+# http://railscasts.com/episodes/190-screen-scraping-with-nokogiri
 
