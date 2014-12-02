@@ -1,6 +1,9 @@
 import urllib2
-
+import time
 import smtplib
+
+SECOND_PER_MINUTE = 60
+
 
 def send_mail(subject):
 # The below code never changes, though obviously those variables need values.
@@ -23,7 +26,7 @@ def send_mail(subject):
   session.sendmail(GMAIL_USERNAME, RECIPIENT, content)
 
 #read product names;
-pfile = open('product.txt', 'r')
+pfile = open('products.txt', 'r')
 products = [line.strip() for line in pfile]
 
 #read deal websites;
@@ -45,4 +48,6 @@ while True in need:
           send_mail(title)
           need[i] = False
           break
-
+  
+  minute = 80
+  time.sleep(SECOND_PER_MINUTE * minute)
