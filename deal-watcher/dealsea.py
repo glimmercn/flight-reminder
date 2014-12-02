@@ -25,22 +25,20 @@ def send_mail(subject):
 #read product names;
 pfile = open('product.txt', 'r')
 products = [line.strip() for line in pfile]
-print(products)
 
 #read deal websites;
 webFile = open('websites.txt', 'r')
 webs = [line.strip() for line in webFile]
-print(webs)
 
 need = [True] * len(products)
 
 while True in need:
-  for i in range(len(products)):
-    product = products[i]
-    if need[i]:
-      for address in webs:
-        page = urllib2.urlopen(address).read()
+  for address in webs:
+    page = urllib2.urlopen(address).read()
 
+    for i in range(len(products)):
+      product = products[i]
+      if need[i]:
         if product in page:
           title = address + ' has ' + product
           print("going send an email")
