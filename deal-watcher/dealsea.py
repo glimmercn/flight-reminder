@@ -1,6 +1,6 @@
 import urllib2
 import time
-import smtplib
+import smtplib, random
 
 SECOND_PER_MINUTE = 60
 
@@ -34,10 +34,13 @@ webFile = open('websites.txt', 'r')
 webs = [line.strip() for line in webFile]
 
 need = [True] * len(products)
+count = 1
 
 while True in need:
   for address in webs:
     page = urllib2.urlopen(address).read()
+    print('check ' + str(count) ) 
+    count = count + 1
 
     for i in range(len(products)):
       product = products[i]
@@ -48,6 +51,8 @@ while True in need:
           send_mail(title)
           need[i] = False
           break
-  
-  minute = 80
+
+  LB = 1
+  UB = 3
+  minute = random.randint(LB, UB)
   time.sleep(SECOND_PER_MINUTE * minute)
