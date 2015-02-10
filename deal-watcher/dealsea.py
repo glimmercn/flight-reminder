@@ -47,7 +47,7 @@ while True in need:
       if need[i]:
         if product in page:
           title = address + ' has ' + product
-          print("going send an email")
+          print(product + " is found on " + address + ", going send an email")
           send_mail(title)
           need[i] = False
           break
