@@ -1,6 +1,7 @@
 import urllib2
 import time
 import smtplib, random
+import os, sys
 
 SECOND_PER_MINUTE = 60
 
@@ -25,12 +26,14 @@ def send_mail(subject):
   content = headers + "\r\n\r\n" 
   session.sendmail(GMAIL_USERNAME, RECIPIENT, content)
 
+pwd = os.path.dirname(__file__)
+
 #read product names;
-pfile = open('products.txt', 'r')
+pfile = open(pwd + '/products.txt', 'r')
 products = [line.strip() for line in pfile]
 
 #read deal websites;
-webFile = open('websites.txt', 'r')
+webFile = open(pwd + '/websites.txt', 'r')
 webs = [line.strip() for line in webFile]
 
 need = [True] * len(products)
