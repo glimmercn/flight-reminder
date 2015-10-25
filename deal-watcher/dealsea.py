@@ -2,15 +2,16 @@ import urllib2
 import time
 import smtplib, random
 import os, sys
+import personal
 
 SECOND_PER_MINUTE = 60
 
 
 def send_mail(subject):
 # The below code never changes, though obviously those variables need values.
-  GMAIL_USERNAME = "do.not.hack.me.322@gmail.com" 
-  GMAIL_PASSWORD = "2ghlmcl1hblsqt"
-  RECIPIENT = "huangkandiy@gmail.com" 
+  GMAIL_USERNAME = personal.gmail_address
+  GMAIL_PASSWORD = personal.password
+  RECIPIENT = personal.recipient
   session = smtplib.SMTP('smtp.gmail.com', 587)
   session.ehlo()
   session.starttls()
@@ -26,8 +27,8 @@ def send_mail(subject):
   content = headers + "\r\n\r\n" 
   session.sendmail(GMAIL_USERNAME, RECIPIENT, content)
 
-pwd = os.path.dirname(__file__)
-
+pwd = os.getcwd()
+print(pwd)
 #read product names;
 pfile = open(pwd + '/products.txt', 'r')
 products = [line.strip() for line in pfile]
