@@ -27,13 +27,13 @@ def send_mail(subject):
   content = headers + "\r\n\r\n" 
   session.sendmail(GMAIL_USERNAME, RECIPIENT, content)
 
-pwd = os.getcwd()
-print(pwd)
-#read product names;
+pwd = personal.pwd
+# print(pwd)
+# read product names;
 pfile = open(pwd + '/products.txt', 'r')
 products = [line.strip() for line in pfile]
 
-#read deal websites;
+# read deal websites;
 webFile = open(pwd + '/websites.txt', 'r')
 webs = [line.strip() for line in webFile]
 
@@ -43,20 +43,21 @@ count = 1
 while True in need:
   for address in webs:
     page = urllib2.urlopen(address).read()
-    print('check ' + str(count) ) 
+    page = page.lower()
+    # print('check ' + str(count) ) 
     count = count + 1
 
     for i in range(len(products)):
-      product = products[i]
+      product = products[i].lower()
       if need[i]:
         if product in page:
           title = address + ' has ' + product
-          print(product + " is found on " + address + ", going send an email")
+          # print(product + " is found on " + address + ", going send an email")
           send_mail(title)
           need[i] = False
           break
 
-  LB = 1
-  UB = 3
+  LB = 5
+  UB = 15
   minute = random.randint(LB, UB)
   time.sleep(SECOND_PER_MINUTE * minute)
