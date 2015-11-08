@@ -1,4 +1,3 @@
-keurig
 dryer
 roomba
 Thinkpad X1 Carbon
