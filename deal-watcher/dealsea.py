@@ -41,21 +41,17 @@ need = [True] * len(products)
 count = 1
 
 while True in need:
-  for address in webs:
-    page = urllib2.urlopen(address).read()
-    page = page.lower()
-    # print('check ' + str(count) ) 
-    count = count + 1
-
-    for i in range(len(products)):
+  for i in range(len(products)):
+    if need[i]:
       product = products[i].lower()
-      if need[i]:
+      
+      for address in webs:
+        page = urllib2.urlopen(address).read()
+        page = page.lower()
         if product in page:
           title = address + ' has ' + product
-          # print(product + " is found on " + address + ", going send an email")
           send_mail(title)
           need[i] = False
-          break
 
   LB = 5
   UB = 15
